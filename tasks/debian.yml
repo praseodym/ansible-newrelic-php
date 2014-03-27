@@ -1,0 +1,11 @@
+---
+- name: Debian | Set newrelic_loaded_os_family
+  set_fact:
+    newrelic_loaded_os_family: "{{ ansible_os_family }}"
+
+- name: Debian | Install New Relic PHP Agent
+  apt:
+    pkg: newrelic-php5
+    state: latest
+  notify:
+    - Run New Relic Installer
