@@ -1,4 +1,0 @@
----
-- name: Restart Apache HTTP server
-  service: name=httpd state=restarted
-  ignore_errors: yes
