@@ -1,2 +1,4 @@
 ---
 php_d_path: /etc/php.d
+php_fpm_service: php-fpm
+apache_service: httpd
