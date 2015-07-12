@@ -12,13 +12,22 @@
 - include: debian.yml
   when: ansible_os_family == 'Debian'
 
+- include: redhat.yml
+  when: ansible_os_family == 'RedHat'
+
 - include: default.yml
   when: newrelic_loaded_os_family|default(False) == False
+
+- include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_os_family }}-{{ ansible_distribution_release }}.yml"
+    - "{{ ansible_os_family }}.yml"
+    - default.yml
 
 - name: Configure New Relic PHP Agent
   template:
     src: newrelic.ini.j2
-    dest: /etc/php5/conf.d/newrelic.ini
+    dest: "{{ php_d_path }}/newrelic.ini"
     group: root
     owner: root
     mode: 0640
