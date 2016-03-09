@@ -1,0 +1,4 @@
+---
+php_d_path: /etc/php5/mods-available
+php_fpm_service: php5-fpm
+apache_service: apache2
