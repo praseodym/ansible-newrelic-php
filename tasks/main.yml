@@ -20,9 +20,12 @@
 
 - include_vars: "{{ item }}"
   with_first_found:
-    - "{{ ansible_os_family }}-{{ ansible_distribution_release }}.yml"
-    - "{{ ansible_os_family }}.yml"
-    - default.yml
+    - files:
+       - "{{ ansible_os_family }}-{{ ansible_distribution_release }}.yml"
+       - "{{ ansible_os_family }}.yml"
+       - default.yml
+      paths:
+       - "../vars/"
 
 - name: Configure New Relic PHP Agent
   template:
